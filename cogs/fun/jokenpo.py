@@ -46,11 +46,11 @@ class Fun(Cog):
         check_and_create_user(user_id)
         
         if rule[move][play.index(bot_move)] == 'e':
-            update_score(user_id, 0, 0, 1, 1)
+            update_score(user_id, wins=0, losses=0, draws=1,)
         elif rule[move][play.index(bot_move)] == 'v':
-            update_score(user_id, 1, 0, 0, 3)
+            update_score(user_id, wins=1, losses=0, draws=0)
         else:
-            update_score(user_id, 0, 1, 0, 1)
+            update_score(user_id, wins=0, losses=1, draws=0)
         
         
         
