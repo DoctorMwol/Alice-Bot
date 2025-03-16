@@ -7,7 +7,7 @@ class ReloadCog(Cog):
         self.bot = bot
 
     @command(name='reload', description='Recarrega uma extensão (cog).')
-    async def reload(self, interaction, extension: str):
+    async def _reload(self, interaction, extension: str):
         """Comando para recarregar uma extensão (cog)."""
         
         app_info = await self.bot.application_info()

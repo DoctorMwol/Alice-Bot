@@ -5,8 +5,8 @@ from discord.ext.commands import Cog
 class LoadCog(Cog):
     def __init__(self, bot):
         self.bot = bot
-    @command(name='load', description='Recarrega uma extensão (cog).')
-    async def load(self, interaction, extension: str):
+    @command(name='load', description='Carrega uma extensão (cog).')
+    async def _load(self, interaction, extension: str):
         """Comando para carregar uma extensão (cog)."""
         
         app_info = await self.bot.application_info()

@@ -6,8 +6,8 @@ class UnloadCog(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @command(name='unload', description='Recarrega uma extensão (cog).')
-    async def unload(self, interaction, extension: str):
+    @command(name='unload', description='Descarrega uma extensão (cog).')
+    async def _unload(self, interaction, extension: str):
         """Comando para descarregar uma extensão (cog)."""
         
         app_info = await self.bot.application_info()
