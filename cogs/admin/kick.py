@@ -27,7 +27,7 @@ class Kick(Cog):
         user: Member,
         reason: Optional[str] = 'Nenhum motivo aparente.'):
             if interaction.user == user:
-                await interaction.response.send_message('Você não pode kickar você mesmo!', ephemeral=True)
+                await interaction.response.send_message('Você não pode kickar você mesmo imbecil!', ephemeral=True)
             else:
                 await print(user.email)
                 await user.kick()
@@ -41,7 +41,7 @@ class Kick(Cog):
             if isinstance(error, MissingPermissions):
                 await interaction.response.send_message('Você não ter permissão para kickar esse usuário!', ephemeral=True)
             else:
-                await interaction.response.send_message('Ei! Você não pode kickar o bot!', ephemeral=True)
+                await interaction.response.send_message('Ei! Você não pode kickar... Não consigo nem acreditar que vc tentou...', ephemeral=True)
 
     @Cog.listener()
     async def on_ready(self):

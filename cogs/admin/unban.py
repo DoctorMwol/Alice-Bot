@@ -33,7 +33,7 @@ class Unban(Cog):
             embed = Embed(
                 title='Sucesso!',
                 description=f'{user}({user.id}) foi desbanido com sucesso!\n**Razão do banimento**: ``````',
-                colour= 0x36393f
+                colour= 0x313338
             )
             embed.set_thumbnail(url=user.avatar)
             if interaction.user == user:
