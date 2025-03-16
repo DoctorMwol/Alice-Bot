@@ -28,7 +28,6 @@ class Bot(BotBase):
             for cog in cogs:
                 await self.load_extension(f'cogs.{folder}.{cog}')
                 print(f'    {cog.capitalize()} loading!')
-        print('Cogs loaded!')
 
         await self.tree.sync(guild=Object(id=1236043718709088256))  # await self.tree.sync()
         print('Slash commands globally synced!')
@@ -43,7 +42,8 @@ class Bot(BotBase):
         print(f'{self.user.name} disconnected')
 
     async def on_ready(self):
-        print(f'{self.user.name} ready')
+        print("Alice Woozworld ready")  # Mensagem antes de mostrar as COGs carregadas
+        print(f'Cogs Ready: {len(self.cogs)}')
 
 bot = Bot()
 bot.run()
