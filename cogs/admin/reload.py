@@ -19,7 +19,7 @@ class ReloadCog(Cog):
 
     @Cog.listener()
     async def on_ready(self):
-        print('    Reload está pronto!')
+        print('    Reload is ready!')
 
 # Setup do cog
 async def setup(bot):
