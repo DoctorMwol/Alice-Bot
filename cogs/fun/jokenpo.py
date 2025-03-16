@@ -1,17 +1,17 @@
-from discord import Interaction, Object
-from discord.app_commands import command, describe, choices
-from discord.app_commands import Choice
-from discord.ext.commands import Cog, Bot
+from discord import Interaction, Object, Embed
+from discord.app_commands import Choice, command, describe, choices
+from discord.ext.commands import Cog, Bot, GroupCog
 from random import choice
 from db.database import check_and_create_user, update_score, get_user_stats
 
 
-class Fun(Cog):
+class Jokenpo(GroupCog):
     def __init__(self, bot: Bot) -> None:
         self.bot = bot
+        super().__init__()
     
     @command(
-        name='jokenpo',
+        name='game',
         description='Jogue jokenpo contra o bot'
     )
     
@@ -53,10 +53,54 @@ class Fun(Cog):
             update_score(user_id, wins=0, losses=1, draws=0)
         
         
-        
+        await interaction.response.send_message(f'Você jogou {play[move]} e joguei {bot_move}. ' + text[rule[move][play.index(bot_move)]])
+
+    @command(
+        name='score',
+        description='Veja seu score'
+    )
+    async def _score(
+        self,
+        interaction: Interaction
+    ) -> None:
+        user_id = interaction.user.id
         score = get_user_stats(user_id)
         
-        await interaction.response.send_message(f'Você jogou {play[move]} e joguei {bot_move}. ' + text[rule[move][play.index(bot_move)]] + '\n' + f'Você tem {score['wins']} vitórias, {score['losses']} derrotas e {score['draws']} empates. TOTAL: {score['total_games']} pontos.')
+        embed = Embed(
+            title='Seu score',
+            color=0x313338
+        )
+        
+        embed.add_field(
+            name='Vitórias',
+            value=score['wins'],
+            inline=True
+        )
+
+        embed.add_field(
+            name='Derrotas',
+            value=score['losses'],
+            inline=True
+        )
+
+        embed.add_field(
+            name='Empates',
+            value=score['draws'],
+            inline=True
+        )
+        embed.add_field(
+            name='Total',
+            value=score['total_games'],
+            inline=True
+        )
+        embed.set_footer(
+            text=f'ID: {user_id}'
+        )
+        embed.set_thumbnail(
+            url=interaction.user.avatar.url
+        )
+
+        await interaction.response.send_message(embed=embed)
 
     @Cog.listener()
     async def on_ready(self):
@@ -64,5 +108,5 @@ class Fun(Cog):
     
 async def setup(bot: Bot) -> None:
     await bot.add_cog(
-        Fun(bot),
+        Jokenpo(bot),
         guilds=[Object(id=1236043718709088256)])
