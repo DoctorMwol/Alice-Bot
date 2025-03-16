@@ -9,6 +9,13 @@ class ReloadCog(Cog):
     @command(name='reload', description='Recarrega uma extensão (cog).')
     async def reload(self, interaction, extension: str):
         """Comando para recarregar uma extensão (cog)."""
+        
+        app_info = await self.bot.application_info()
+        self.bot_owner_id = app_info.owner.id
+        
+        if interaction.user.id != self.bot_owner_id:
+            
+            return await interaction.response.send_message("Você não tem permissão para usar este comando!", ephemeral=True)
         try:
             # Unload e load da extensão
             await self.bot.unload_extension(extension)

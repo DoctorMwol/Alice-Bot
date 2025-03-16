@@ -104,7 +104,7 @@ class Jokenpo(GroupCog):
 
     @Cog.listener()
     async def on_ready(self):
-        print('    Jokenpo  is ready!')
+        print('    Jokenpo is ready!')
     
 async def setup(bot: Bot) -> None:
     await bot.add_cog(
