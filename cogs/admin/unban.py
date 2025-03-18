@@ -47,7 +47,6 @@ class Unban(Cog):
         self,
         interaction: Interaction,
         error: AppCommandError):
-            print(interaction.client.user.id)
             if isinstance(error, MissingPermissions):
                 await interaction.response.send_message('Você não ter permissão para desbanir esse usuário!', ephemeral=True)
             else:
